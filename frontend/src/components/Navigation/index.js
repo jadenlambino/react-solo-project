@@ -22,12 +22,14 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <div className='nav-holder'>
+      <ul className='navbar'>
+        <li className='nav-element'>
+          <NavLink exact to="/">Home</NavLink>
+          {isLoaded && sessionLinks}
+        </li>
+      </ul>
+    </div>
   );
 }
 

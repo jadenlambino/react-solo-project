@@ -1,0 +1,36 @@
+body {
+    background-color: lightgray;
+}
+
+.root {
+    height: 100%;
+    padding: 4em;
+}
+
+.nav-holder {
+    width: 100%;
+    height: 4em;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    margin: 0 auto;
+}
+
+.navbar {
+    list-style: none;
+}
+
+.navbar li {
+    margin: 5px 10px;
+    float: right;
+}
+
+.nav-element a {
+    margin: auto 10px;
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: orange;
+}
