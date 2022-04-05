@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Articles from './components/ArticlesDisplay';
 import ArticlesForm from './components/ArticlesForm'
+import SingleArticle from "./components/SingleArticle";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path='/articles/new'>
             <ArticlesForm />
+          </Route>
+          <Route path='/articles/:id'>
+            <SingleArticle />
           </Route>
         </Switch>
       )}

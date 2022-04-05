@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GRAB = '/articles/GRAB'
 const ADD = '/articles/ADD'
+const DEL = '/articles/DEL'
 
 const grab = articles => ({
     type: GRAB,
@@ -10,6 +11,11 @@ const grab = articles => ({
 
 const add = articles => ({
     type: ADD,
+    articles
+})
+
+const del = articles => ({
+    type: DEL,
     articles
 })
 
@@ -36,6 +42,18 @@ export const addArticles = (payload) => async dispatch => {
     } else {
         const error = await response.json()
         Promise.reject(error.errors).then(console.log('hello'));
+    }
+}
+
+export const deleteArticles = (articleId) => async dispatch => {
+    const response = await fetch (`/api/articles/${articleId}`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        const { id: deletedArticleId } = await response.json();
+        dispatch(del(deletedArticleId));
+        return deletedArticleId
     }
 }
 
