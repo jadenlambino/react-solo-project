@@ -1,12 +1,14 @@
-// const express = require('express')
-// const asyncHandler = require('express-async-handler')
-// const check = require('express-validator')
+const express = require('express')
+const asyncHandler = require('express-async-handler')
+const check = require('express-validator')
 
-// const { Articles } = require('../../db/models')
-// const router = express.Router()
+const { Articles } = require('../../db/models')
+const router = express.Router()
 
-// router.get('/', (req, res) => {
-//     console.log(res)
-// })
+router.get('/', asyncHandler(async (req, res) => {
+        const articles = await Articles.findAll()
+        return res.json(articles)
+    })
+);
 
-// module.exports = router
+module.exports = router
