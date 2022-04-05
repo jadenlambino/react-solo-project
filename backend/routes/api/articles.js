@@ -14,26 +14,29 @@ router.get('/', asyncHandler(async (req, res) => {
     })
 );
 
-router.post('/', asyncHandler (async (req, res ) => {
+router.post('/', validateArticles, asyncHandler (async (req, res ) => {
     //const { userId } = req.session.auth;
     const { userId ,title, body, coverPhoto } = req.body;
 
-   // console.log(req.session.auth)
-
-    const newArticle = await db.Articles.build({
+    const newArticle = await db.Articles.create({
         userId,
         title,
         body,
         coverPhoto
     });
 
-    console.log(newArticle)
-    if (newArticle) {
-        await newArticle.save();
-        res.json({ message: 'Success'})
-    } else {
-        res.json({ message: 'Bad Post'})
-    }
+    res.json(newArticle)
+
+    // if (newArticle) {
+    //     await newArticle.save();
+    //     res.json({ message: 'Success'})
+    // } else {
+    //     const err = new Error('Unsuccessful Attempt');
+    //     err.status = 400;
+    //     err.title = 'Failed Post'
+    //     err.errors = ['']
+    //     res.json({ message: 'Bad Post'})
+    // }
 }))
 
 module.exports = router

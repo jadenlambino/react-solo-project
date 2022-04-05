@@ -33,11 +33,10 @@ export const addArticles = (payload) => async dispatch => {
         const article = await response.json();
         dispatch(add(article));
         return article
+    } else {
+        const error = await response.json()
+        Promise.reject(error.errors).then(console.log('hello'));
     }
-    // else {
-    //     const error = await response.json();
-    //     return Promise.reject(error.errors)
-    // }
 }
 
 const initialState = {

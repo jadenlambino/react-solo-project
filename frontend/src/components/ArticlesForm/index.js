@@ -7,6 +7,7 @@ const ArticleForm = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [coverPhoto, setCoverPhoto] = useState('');
+    const [errors, setErrors] = useState([])
 
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.session.user)
@@ -21,7 +22,11 @@ const ArticleForm = () => {
         };
 
         const response = await dispatch(addArticles(newArticle))
-        if (response.message === "Success") reset()
+        // console.log(response)
+        if (response.id) reset()
+        else {
+
+        }
     };
 
     const reset = () => {
@@ -34,6 +39,11 @@ const ArticleForm = () => {
         <div>
             <h1>Create Article</h1>
             <form onSubmit={handleSubmit}>
+                <ul>
+                    {errors.map((error, idx) =>
+                        <li key={idx}>{error}</li>
+                    )}
+                </ul>
                 <input
                     type='text'
                     onChange={(e) => setTitle(e.target.value)}

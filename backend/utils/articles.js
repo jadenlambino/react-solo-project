@@ -1,5 +1,5 @@
 const {check} = require('express-validator')
-const handleValidationErrors = require('./validation')
+const {handleValidationErrors} = require('./validation')
 
 const title =
     check('title')
@@ -13,6 +13,7 @@ const body =
 
 const coverPhoto =
     check('coverPhoto')
+    .optional({ checkFalsy: true })
     .isURL()
     .withMessage('Must be a valid URL.')
 
