@@ -6,29 +6,33 @@ const db = require('../../db/models')
 const { Articles } = require('../../db/models')
 const router = express.Router()
 
+
 router.get('/', asyncHandler(async (req, res) => {
         const articles = await Articles.findAll()
         return res.json(articles)
     })
 );
 
-// router.post('/new', asyncHandler (async (req, res ) => {
-//     const { userId } = req.session.auth;
-//     const { title, body, coverPhoto } = req.body;
+router.post('/', asyncHandler (async (req, res ) => {
+    //const { userId } = req.session.auth;
+    const { userId ,title, body, coverPhoto } = req.body;
 
-//     const newArticle = await db.Articles.build({
-//         userId,
-//         title,
-//         body,
-//         coverPhoto
-//     });
+   // console.log(req.session.auth)
 
-//     if (newArticle) {
-//         await newArticle.save();
-//         res.json({ message: 'Success'})
-//     } else {
-//         res.json({ message: 'Bad Post'})
-//     }
-// }))
+    const newArticle = await db.Articles.build({
+        userId,
+        title,
+        body,
+        coverPhoto
+    });
+
+    console.log(newArticle)
+    if (newArticle) {
+        await newArticle.save();
+        res.json(newArticle)
+    } else {
+        res.json({ message: 'Bad Post'})
+    }
+}))
 
 module.exports = router
