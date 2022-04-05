@@ -21,7 +21,7 @@ const initialState = {
 export default function articlesReducer(state = initialState, action) {
     switch (action.type) {
         case GRAB:
-            return { ...state, entries: {...action.articles}};
+            return { ...state, entries: [...action.articles]};
         default:
             return state;
     }
