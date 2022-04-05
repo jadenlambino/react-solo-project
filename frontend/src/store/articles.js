@@ -46,14 +46,14 @@ export const addArticles = (payload) => async dispatch => {
 }
 
 export const deleteArticles = (articleId) => async dispatch => {
-    const response = await fetch (`/api/articles/${articleId}`, {
+    const response = await csrfFetch (`/api/articles/${articleId}`, {
         method: 'DELETE'
     });
 
     if (response.ok) {
         const { id: deletedArticleId } = await response.json();
         dispatch(del(deletedArticleId));
-        return deletedArticleId
+        // return deletedArticleId
     }
 }
 
@@ -67,6 +67,10 @@ export default function articlesReducer(state = initialState, action) {
             return { ...state, entries: [...action.articles]};
         case ADD:
             return { ...state, entries: [...state.entries, action.article]}
+        case DEL:
+            const newState = {...state}
+            delete newState[action.itemId]
+            return newState
         default:
             return state;
     }

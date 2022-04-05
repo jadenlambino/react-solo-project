@@ -26,17 +26,14 @@ router.post('/', validateArticles, asyncHandler (async (req, res ) => {
     });
 
     res.json(newArticle)
+}))
 
-    // if (newArticle) {
-    //     await newArticle.save();
-    //     res.json({ message: 'Success'})
-    // } else {
-    //     const err = new Error('Unsuccessful Attempt');
-    //     err.status = 400;
-    //     err.title = 'Failed Post'
-    //     err.errors = ['']
-    //     res.json({ message: 'Bad Post'})
-    // }
+router.delete('/:id', asyncHandler (async (req, res) => {
+    const article = await Articles.findByPk(req.params.id);
+    if (!article) throw new Error('Cannot find item');
+
+    await Articles.destroy({ where: {id: article.id }});
+    return res.json({ id: article.id })
 }))
 
 module.exports = router

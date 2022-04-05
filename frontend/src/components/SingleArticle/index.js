@@ -1,14 +1,22 @@
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './singleArticle.css';
 
+import { deleteArticles } from '../../store/articles';
 
 const SingleArticle = () => {
     const { id } = useParams();
     const articles = useSelector(state => state.articleState.entries)
-    console.log(id)
-    console.log(articles)
+    const dispatch = useDispatch();
+    const history = useHistory()
+
     const singleArticle = articles.find(article => article.id === +id)
+
+    const deleteRedirect = () => {
+        dispatch(deleteArticles(singleArticle.id))
+        history.push('/articles')
+    }
 
     return (
         <>
@@ -24,6 +32,7 @@ const SingleArticle = () => {
                     </p>
                </div>
             )}
+            <button onClick={deleteRedirect}>Delete</button>
         </>
     )
 }
