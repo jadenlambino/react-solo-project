@@ -1,28 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { getArticles } from '../../store/articles';
 
 function articlesDisplay() {
     const dispatch = useDispatch();
-    const { articlesId } = useParams();
-
-    const article = useSelector(state => {
-        return state.article.list.map(articlesId => state.article[articlesId])
-    });
+    const articles = useSelector(state => state.articleState.entries)
+    //console.log(articles)
     useEffect(() => {
         dispatch(getArticles())
     }, [dispatch])
 
-    if(!article) return null
-
     return (
-        <>
-            <div>
-                does this work
-            </div>
-        </>
+        <div>
+            <h1>New Articles</h1>
+            <ul>
+                {articles.map(({ id , title}) => (
+                    <li>{title}</li>
+                ))}
+            </ul>
+        </div>
     )
 }
 
