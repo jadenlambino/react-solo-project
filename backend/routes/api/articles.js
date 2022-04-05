@@ -4,6 +4,7 @@ const check = require('express-validator')
 const db = require('../../db/models')
 
 const { Articles } = require('../../db/models')
+const { validateArticles } = require('../../utils/articles')
 const router = express.Router()
 
 
@@ -29,7 +30,7 @@ router.post('/', asyncHandler (async (req, res ) => {
     console.log(newArticle)
     if (newArticle) {
         await newArticle.save();
-        res.json(newArticle)
+        res.json({ message: 'Success'})
     } else {
         res.json({ message: 'Bad Post'})
     }

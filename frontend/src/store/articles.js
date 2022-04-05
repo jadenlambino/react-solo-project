@@ -32,7 +32,7 @@ export const addArticles = (payload) => async dispatch => {
     if (response.ok) {
         const article = await response.json();
         dispatch(add(article));
-        // return article
+        return article
     }
     // else {
     //     const error = await response.json();

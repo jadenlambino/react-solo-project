@@ -20,10 +20,8 @@ const ArticleForm = () => {
             coverPhoto
         };
 
-        const result = await dispatch(addArticles(newArticle))
-        console.log(result)
-        if (result) reset();
-        else console.log(result)
+        const response = await dispatch(addArticles(newArticle))
+        if (response.message === "Success") reset()
     };
 
     const reset = () => {
