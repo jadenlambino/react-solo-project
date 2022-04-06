@@ -5,6 +5,9 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignUpFormPage from "./components/SignUpFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import Articles from './components/ArticlesDisplay';
+import ArticlesForm from './components/ArticlesForm'
+import SingleArticle from "./components/SingleArticle";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +26,15 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignUpFormPage />
+          </Route>
+          <Route path='/articles' exact>
+            <Articles />
+          </Route>
+          <Route path='/articles/new'>
+            <ArticlesForm />
+          </Route>
+          <Route path='/articles/:id'>
+            <SingleArticle />
           </Route>
         </Switch>
       )}
