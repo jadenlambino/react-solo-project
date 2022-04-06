@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addArticles } from "../../store/articles";
 import { useState } from "react";
 import './articlesForm.css';
+import { useHistory } from "react-router-dom";
 
 const ArticleForm = () => {
     const [title, setTitle] = useState('');
@@ -10,6 +11,7 @@ const ArticleForm = () => {
     const [errors, setErrors] = useState([])
 
     const dispatch = useDispatch();
+    const history = useHistory
     const userId = useSelector((state) => state.session.user)
 
     const handleSubmit = async (e) => {
@@ -23,7 +25,10 @@ const ArticleForm = () => {
 
         const response = await dispatch(addArticles(newArticle))
         // console.log(response)
-        if (response.id) reset()
+        if (response.id) {
+            reset();
+            history.push(`/article/${response.id}`)
+        }
         else {
 
         }

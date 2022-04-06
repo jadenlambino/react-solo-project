@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { getArticles } from '../../store/articles';
 
@@ -11,6 +12,9 @@ function ArticlesDisplay() {
     useEffect(() => {
         dispatch(getArticles())
     }, [dispatch])
+    const history = useHistory();
+
+    history.push('/articles')
 
     return (
         <div>

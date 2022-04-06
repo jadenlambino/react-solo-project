@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const GRAB = '/articles/GRAB'
 const ADD = '/articles/ADD'
 const DEL = '/articles/DEL'
+const EDIT ='/articles/EDIT'
 
 const grab = articles => ({
     type: GRAB,
@@ -19,6 +20,11 @@ const del = articles => ({
     articles
 })
 
+const edit = articles => ({
+    type: EDIT,
+    articles
+})
+
 export const getArticles = () => async dispatch => {
     const response = await fetch ('/api/articles');
 
@@ -31,7 +37,9 @@ export const getArticles = () => async dispatch => {
 export const addArticles = (payload) => async dispatch => {
     const response = await csrfFetch('/api/articles/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(payload)
     });
 
@@ -53,7 +61,23 @@ export const deleteArticles = (articleId) => async dispatch => {
     if (response.ok) {
         const { id: deletedArticleId } = await response.json();
         dispatch(del(deletedArticleId));
-        // return deletedArticleId
+        return deletedArticleId
+    }
+}
+
+export const editArticles = (payload, articleId) => async dispatch => {
+    const response = await csrfFetch(`/api/articles/${articleId}`, {
+        method: "PATCH",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+
+    if (response.ok) {
+        let article = await response.json;
+        dispatch(edit(article))
+        return article
     }
 }
 

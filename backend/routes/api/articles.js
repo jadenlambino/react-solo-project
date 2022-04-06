@@ -34,6 +34,20 @@ router.delete('/:id', asyncHandler (async (req, res) => {
 
     await Articles.destroy({ where: {id: article.id }});
     return res.json({ id: article.id })
+}));
+
+router.patch('/:id', validateArticles, asyncHandler (async (req, res) => {
+    let article = await Articles.findByPk(req.params.id);
+
+    const { title, body, coverPhoto } = req.body;
+
+    article.title = title;
+    article.body = body;
+    article.coverPhoto = coverPhoto;
+
+    await article.save()
+
+    return res.json(article)
 }))
 
 module.exports = router
