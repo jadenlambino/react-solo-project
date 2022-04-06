@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useState } from "react";
@@ -36,7 +36,7 @@ const SingleArticle = () => {
 
         const response = await dispatch(editArticles(editedBody, id))
         if (response) {
-            console.log('swag')
+            history.push(`/articles/${singleArticle.id}`)
         }
     }
 
@@ -44,6 +44,7 @@ const SingleArticle = () => {
         <>
             {singleArticle && (
                <div>
+                   <NavLink to='/articles'>Home</NavLink>
                    <h1>{singleArticle.title}</h1>
                    <img
                     src={singleArticle.coverPhoto}
