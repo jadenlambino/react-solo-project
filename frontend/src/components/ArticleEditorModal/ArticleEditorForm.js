@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './ArticleEditorForm.css';
 
 import { editArticles } from '../../store/articles';
@@ -9,7 +10,8 @@ export default function ArticleEditor() {
     const { id } = useParams();
     const articles = useSelector(state => state.articleState.entries);
 
-    const dispatch = useDispatch;
+    const dispatch = useDispatch();
+    const history = useHistory()
 
     const singleArticle = articles.find(article => article.id === +id)
 
@@ -29,7 +31,7 @@ export default function ArticleEditor() {
 
         const response = await dispatch(editArticles(editedBody, id))
         if (response) {
-            console.log('swag')
+            history.push(`/articles/${id}`)
         }
     }
 

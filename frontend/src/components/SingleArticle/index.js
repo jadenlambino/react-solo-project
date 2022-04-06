@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ArticleEditorModal from '../ArticleEditorModal';
@@ -6,9 +6,8 @@ import './singleArticle.css';
 
 import { deleteArticles } from '../../store/articles';
 
-const SingleArticle = () => {
+const SingleArticle = ( {articles} ) => {
     const { id } = useParams();
-    const articles = useSelector(state => state.articleState.entries)
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory()
@@ -33,7 +32,8 @@ const SingleArticle = () => {
     return (
         <>
             {singleArticle && (
-               <div>
+               <div className='article-container'>
+                   <NavLink to='/articles'>Back</NavLink>
                    <h1>{singleArticle.title}</h1>
                    <img
                     src={singleArticle.coverPhoto}

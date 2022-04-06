@@ -23,14 +23,11 @@ function App() {
           <Route path="/signup">
             <SignUpFormPage />
           </Route>
-          <Route path='/articles' exact>
+          <Route path='/articles'>
             <Articles />
           </Route>
           <Route path='/articles/new'>
             <ArticlesForm />
-          </Route>
-          <Route path='/articles/:id'>
-            <SingleArticle />
           </Route>
         </Switch>
       )}

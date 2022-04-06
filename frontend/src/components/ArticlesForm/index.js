@@ -11,7 +11,7 @@ const ArticleForm = () => {
     const [errors, setErrors] = useState([])
 
     const dispatch = useDispatch();
-    const history = useHistory
+    const history = useHistory();
     const userId = useSelector((state) => state.session.user)
 
     const handleSubmit = async (e) => {
@@ -26,19 +26,19 @@ const ArticleForm = () => {
         const response = await dispatch(addArticles(newArticle))
         // console.log(response)
         if (response.id) {
-            reset();
-            history.push(`/article/${response.id}`)
+            // reset();
+            history.push(`/articles/${response.id}`)
         }
         else {
 
         }
     };
 
-    const reset = () => {
-        setTitle('');
-        setBody('');
-        setCoverPhoto('');
-    }
+    // const reset = () => {
+    //     setTitle('');
+    //     setBody('');
+    //     setCoverPhoto('');
+    // }
 
     return (
         <div className='create-article-form'>

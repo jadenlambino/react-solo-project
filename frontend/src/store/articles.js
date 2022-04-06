@@ -90,10 +90,10 @@ export default function articlesReducer(state = initialState, action) {
         case GRAB:
             return { ...state, entries: [...action.articles]};
         case ADD:
-            return { ...state, entries: [...state.entries, action.article]}
+            return { ...state, entries: [...state.entries, action.articles]}
         case DEL:
             const newState = {...state}
-            delete newState[action.itemId]
+            delete newState[action.articlesId]
             return newState
         default:
             return state;
