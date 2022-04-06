@@ -41,7 +41,7 @@ const ArticleForm = () => {
     }
 
     return (
-        <div>
+        <div className='create-article-form'>
             <h1>Create Article</h1>
             <form onSubmit={handleSubmit}>
                 <ul>
