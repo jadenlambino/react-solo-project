@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import './articles.css'
 
 import { getArticles } from '../../store/articles';
 
@@ -44,7 +45,7 @@ function ArticlesDisplay() {
     }
 
     return (
-        <div>
+        <div className='articles-container'>
             <h1>New Articles</h1>
             {loggedIn}
         </div>

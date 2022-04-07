@@ -80,7 +80,7 @@ const SingleArticle = () => {
 
 
     return (
-        <>
+        <div className='single-article-container'>
             {singleArticle && (
                <div>
                    <NavLink to='/articles'>Home</NavLink>
@@ -95,7 +95,7 @@ const SingleArticle = () => {
                </div>
             )}
             {sessionUser.id === singleArticle.userId && editOrDelete}
-        </>
+        </div>
     )
 }
 
