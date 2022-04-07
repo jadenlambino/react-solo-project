@@ -2,8 +2,10 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ArticleEditorModal from '../ArticleEditorModal';
+import { useState, useEffect } from "react";
 import './singleArticle.css';
 
+import { getSingleArticle } from '../../store/articles';
 import { deleteArticles } from '../../store/articles';
 
 const SingleArticle = ( {articles} ) => {
@@ -12,7 +14,7 @@ const SingleArticle = ( {articles} ) => {
     const dispatch = useDispatch();
     const history = useHistory()
 
-    const singleArticle = articles.find(article => article.id === +id)
+    const singleArticle = articles?.find(article => article.id === +id)
 
     const deleteRedirect = () => {
         dispatch(deleteArticles(singleArticle.id))
@@ -32,8 +34,8 @@ const SingleArticle = ( {articles} ) => {
     return (
         <>
             {singleArticle && (
-               <div className='article-container'>
-                   <NavLink to='/articles'>Back</NavLink>
+               <div>
+                   <NavLink to='/articles'>Home</NavLink>
                    <h1>{singleArticle.title}</h1>
                    <img
                     src={singleArticle.coverPhoto}

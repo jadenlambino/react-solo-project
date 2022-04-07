@@ -26,19 +26,10 @@ const ArticleForm = () => {
         const response = await dispatch(addArticles(newArticle))
         // console.log(response)
         if (response.id) {
-            // reset();
+
             history.push(`/articles/${response.id}`)
         }
-        else {
-
-        }
     };
-
-    // const reset = () => {
-    //     setTitle('');
-    //     setBody('');
-    //     setCoverPhoto('');
-    // }
 
     return (
         <div className='create-article-form'>

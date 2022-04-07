@@ -28,12 +28,7 @@ function ArticlesDisplay() {
                     </li>
                 ))}
             </ul>
-
-            <Switch>
-                    <Route path='/articles/:id' exact>
-                        <SingleArticle articles={articles}/>
-                    </Route>
-            </Switch>
+            <NavLink to={'/articles/new'}>New Post</NavLink>
         </div>
 
     )
