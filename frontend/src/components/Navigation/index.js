@@ -22,10 +22,10 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <div className='nav-container'>
-      <span>LARGE</span>
+    <div className='nav-holder'>
       <ul className='navbar'>
-        <li>
+      <NavLink to='/' className='logo'>LARGE</NavLink>
+        <li className='nav-element'>
           <NavLink exact to="/">Home</NavLink>
           <NavLink to='/articles'>Articles</NavLink>
           {isLoaded && sessionLinks}
