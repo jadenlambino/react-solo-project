@@ -8,6 +8,7 @@ import { getArticles } from '../../store/articles';
 function ArticlesDisplay() {
     const dispatch = useDispatch();
     const articles = useSelector(state => state.articleState.entries)
+    const sessionUser = useSelector(state => state.session.user);
     //console.log(articles)
     useEffect(() => {
         dispatch(getArticles())
@@ -16,17 +17,36 @@ function ArticlesDisplay() {
 
     history.push('/articles')
 
-    return (
-        <div>
-            <h1>New Articles</h1>
+    let loggedIn
+    if (!sessionUser) {
+        loggedIn = (
             <ul>
                 {articles?.map(({ id , title}) => (
                     <li key={id}>
-                        <NavLink to={`/articles/${id}`}>{title}</NavLink>
+                        <NavLink to={`/signup`}>{title}</NavLink>
                     </li>
                 ))}
             </ul>
-            <NavLink to={'/articles/new'}>New Post</NavLink>
+        )
+    } else {
+        loggedIn = (
+            <>
+                <ul>
+                    {articles?.map(({ id , title}) => (
+                        <li key={id}>
+                            <NavLink to={`/articles/${id}`}>{title}</NavLink>
+                        </li>
+                    ))}
+                 </ul>
+                <NavLink to={'/articles/new'}>New Post</NavLink>
+            </>
+        )
+    }
+
+    return (
+        <div>
+            <h1>New Articles</h1>
+            {loggedIn}
         </div>
     )
 }
