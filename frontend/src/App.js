@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignUpFormPage from "./components/SignUpFormPage";
@@ -9,6 +9,7 @@ import Articles from './components/ArticlesDisplay';
 import ArticlesForm from './components/ArticlesForm'
 import SingleArticle from "./components/SingleArticle";
 import LandingPage from "./components/LandingPage";
+import HomePage from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,13 +18,25 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  const sessionUser = useSelector(state => state.session.user);
+  let homePages;
+  if (!sessionUser) {
+    homePages = (
+      <LandingPage />
+    );
+  } else {
+    homePages = (
+      <HomePage />
+    )
+  }
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
-            <LandingPage />
+            {homePages}
           </Route>
           <Route path="/login">
             <LoginFormPage />
