@@ -1,9 +1,10 @@
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './singleArticle.css';
 
+import { getSingleArticle } from '../../store/articles';
 import { deleteArticles } from '../../store/articles';
 import { editArticles } from '../../store/articles';
 
@@ -13,7 +14,7 @@ const SingleArticle = () => {
     const dispatch = useDispatch();
     const history = useHistory()
 
-    const singleArticle = articles.find(article => article.id === +id)
+    const singleArticle = articles?.find(article => article.id === +id)
 
     const [title, setTitle] = useState(singleArticle.title);
     const [body, setBody] = useState(singleArticle.body);
@@ -36,8 +37,7 @@ const SingleArticle = () => {
 
         const response = await dispatch(editArticles(editedBody, id))
         if (response) {
-
-            history.push(`/articles/${singleArticle.id}`)
+            history.push(`/articles/${singleArticle.id}`);
         }
     }
 

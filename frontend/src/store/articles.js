@@ -1,12 +1,18 @@
 import { csrfFetch } from "./csrf";
 
 const GRAB = '/articles/GRAB'
+const GRABONE = '/articles/GRABONE'
 const ADD = '/articles/ADD'
 const DEL = '/articles/DEL'
 const EDIT ='/articles/EDIT'
 
 const grab = articles => ({
     type: GRAB,
+    articles
+})
+
+const grabSingle = articles => ({
+    type: GRABONE,
     articles
 })
 
@@ -31,6 +37,15 @@ export const getArticles = () => async dispatch => {
     if (response.ok) {
         const articles = await response.json();
         dispatch(grab(articles))
+    }
+}
+
+export const getSingleArticle = (id) => async dispatch => {
+    const response = await fetch(`/api/articles/${id}`);
+
+    if (response.ok) {
+        const article = await response.json();
+        dispatch(grabSingle(article))
     }
 }
 
@@ -75,7 +90,7 @@ export const editArticles = (payload, articleId) => async dispatch => {
     })
 
     if (response.ok) {
-        let article = await response.json;
+        let article = await response.json();
         dispatch(edit(article))
         return article
     }
@@ -95,6 +110,12 @@ export default function articlesReducer(state = initialState, action) {
             const newState = {...state}
             delete newState[action.itemId]
             return newState
+        case EDIT:
+            state.entries.pop()
+            return {
+                ...state,
+                entries: [ state.entries, action.articles]
+            }
         default:
             return state;
     }
