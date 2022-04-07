@@ -36,8 +36,15 @@ const SingleArticle = () => {
 
         const response = await dispatch(editArticles(editedBody, id))
         if (response) {
+
             history.push(`/articles/${singleArticle.id}`)
         }
+    }
+
+    const reset = () => {
+        setTitle('');
+        setBody('');
+        setCoverPhoto('');
     }
 
     return (

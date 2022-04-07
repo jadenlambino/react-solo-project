@@ -26,6 +26,7 @@ function ArticlesDisplay() {
                     </li>
                 ))}
             </ul>
+            <NavLink to={'/articles/new'}>New Post</NavLink>
         </div>
     )
 }
