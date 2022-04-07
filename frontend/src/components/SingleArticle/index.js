@@ -10,6 +10,7 @@ import { editArticles } from '../../store/articles';
 
 const SingleArticle = () => {
     const { id } = useParams();
+    const sessionUser = useSelector(state => state.session.user);
     const articles = useSelector(state => state.articleState.entries)
     const dispatch = useDispatch();
     const history = useHistory()
@@ -41,27 +42,9 @@ const SingleArticle = () => {
         }
     }
 
-    const reset = () => {
-        setTitle('');
-        setBody('');
-        setCoverPhoto('');
-    }
-
-    return (
+    let editOrDelete;
+    editOrDelete = (
         <>
-            {singleArticle && (
-               <div>
-                   <NavLink to='/articles'>Home</NavLink>
-                   <h1>{singleArticle.title}</h1>
-                   <img
-                    src={singleArticle.coverPhoto}
-                    alt={singleArticle.title}
-                    />
-                    <p>
-                        {singleArticle?.body}
-                    </p>
-               </div>
-            )}
             <button onClick={deleteRedirect}>Delete</button>
             <form onSubmit={editMode}>
                 <ul>
@@ -92,6 +75,26 @@ const SingleArticle = () => {
                     />
                     <button type='submit'>Publish</button>
             </form>
+        </>
+    )
+
+
+    return (
+        <>
+            {singleArticle && (
+               <div>
+                   <NavLink to='/articles'>Home</NavLink>
+                   <h1>{singleArticle.title}</h1>
+                   <img
+                    src={singleArticle.coverPhoto}
+                    alt={singleArticle.title}
+                    />
+                    <p>
+                        {singleArticle?.body}
+                    </p>
+               </div>
+            )}
+            {sessionUser.id === singleArticle.userId && editOrDelete}
         </>
     )
 }
