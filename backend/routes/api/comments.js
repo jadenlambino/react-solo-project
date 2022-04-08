@@ -22,6 +22,14 @@ router.post('/', asyncHandler(async (req, res) => {
     res.json(newComment)
 }))
 
+router.delete('/:id', asyncHandler(async (req, res) => {
+    const comment = Comments.findByPk(req.params.id);
+    if (!comment) throw new Error('Cannot find Item');
+
+    await Comments.destroy({ where: {id: comment.id}})
+    return res.json({id: article.id})
+}))
+
 // router.patch('/:id', asyncHandler (async (req, res) => {
 //     let comments = await Comments.findAll({ where: })
 // }))
