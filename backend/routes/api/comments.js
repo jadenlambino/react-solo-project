@@ -22,4 +22,8 @@ router.post('/', asyncHandler(async (req, res) => {
     res.json(newComment)
 }))
 
+// router.patch('/:id', asyncHandler (async (req, res) => {
+//     let comments = await Comments.findAll({ where: })
+// }))
+
 module.exports = router

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import './singleArticle.css';
 
 import { getSingleArticle } from '../../store/articles';
+import { getComments } from '../../store/comments';
 import { deleteArticles } from '../../store/articles';
 import { editArticles } from '../../store/articles';
 
@@ -12,6 +13,7 @@ const SingleArticle = () => {
     const { id } = useParams();
     const sessionUser = useSelector(state => state.session.user);
     const articles = useSelector(state => state.articleState.entries)
+    const comments = useSelector(state => state.commentState.entries)
     const dispatch = useDispatch();
     const history = useHistory()
 
@@ -21,6 +23,10 @@ const SingleArticle = () => {
     const [body, setBody] = useState(singleArticle.body);
     const [coverPhoto, setCoverPhoto] = useState(singleArticle.coverPhoto);
     const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        dispatch(getComments(id))
+    }, [dispatch])
 
     const deleteRedirect = () => {
         dispatch(deleteArticles(singleArticle.id))
@@ -92,6 +98,15 @@ const SingleArticle = () => {
                     <p>
                         {singleArticle?.body}
                     </p>
+                    <ul>
+                        {comments?.map(({articleId, id, body}) => {
+                            if (articleId === singleArticle.id) {
+                                return (
+                                    <li key={id}>{body}</li>
+                                )
+                            } else return
+                        })}
+                    </ul>
                </div>
             )}
             {sessionUser.id === singleArticle.userId && editOrDelete}
