@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf"
 
 const GRAB = '/comments/GRAB'
-const ADD = '/comments/DEL'
+const ADD = '/comments/ADD'
 const DEL = '/comments/DEL'
 
 const grab = comments => ({

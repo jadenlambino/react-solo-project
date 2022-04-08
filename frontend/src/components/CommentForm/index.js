@@ -38,7 +38,7 @@ const CommentForm = () => {
                 placeholder="Comment Here!"
                 name='title'
                 />
-                <button type='submit'>Submit</button>
+                <button type='submit' onSubmit={() => handleSubmit}>Submit</button>
             </form>
         </div>
     )

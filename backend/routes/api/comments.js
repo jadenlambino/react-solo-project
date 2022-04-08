@@ -33,7 +33,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
     // if (!comment) throw new Error('Cannot find Item');
 
     await Comments.destroy({ where: {id: commentId}})
-    return res.json(commentId)
+    return res.json({ id: commentId})
 }))
 
 // router.patch('/:id', asyncHandler (async (req, res) => {
