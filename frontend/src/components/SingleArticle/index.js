@@ -7,11 +7,13 @@ import './singleArticle.css';
 import { getSingleArticle } from '../../store/articles';
 import { deleteArticles } from '../../store/articles';
 import { editArticles } from '../../store/articles';
+import CommentDisplay from '../CommentsDisplay';
 
 const SingleArticle = () => {
     const { id } = useParams();
     const sessionUser = useSelector(state => state.session.user);
     const articles = useSelector(state => state.articleState.entries)
+    const comments = useSelector(state => state.commentState.entries)
     const dispatch = useDispatch();
     const history = useHistory()
 
@@ -95,6 +97,7 @@ const SingleArticle = () => {
                </div>
             )}
             {sessionUser.id === singleArticle.userId && editOrDelete}
+            <CommentDisplay />
         </div>
     )
 }
