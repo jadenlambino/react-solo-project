@@ -29,10 +29,10 @@ router.post('/', asyncHandler(async (req, res) => {
 
 router.delete('/:id', asyncHandler(async (req, res) => {
     const comment = Comments.findByPk(req.params.id);
-    const id = comment.id
+    const commentId = comment.id
     if (!comment) throw new Error('Cannot find Item');
 
-    await Comments.destroy({ where: {id: id}})
+    await Comments.destroy({ where: {id: commentId}})
     return res.json({id: id})
 }))
 
