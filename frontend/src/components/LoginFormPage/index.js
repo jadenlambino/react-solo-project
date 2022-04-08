@@ -25,6 +25,12 @@ function LoginFormPage() {
       });
   }
 
+  const demoUser = (e) => {
+    setCredential('Demo-lition')
+    setPassword('password')
+    e.submit();
+  }
+
   return (
     <div className='login-container'>
       <form onSubmit={handleSubmit}>
@@ -50,6 +56,7 @@ function LoginFormPage() {
           />
         </label>
         <button type="submit">Log In</button>
+        <button type="submit" onClick={demoUser}>Demo User</button>
       </form>
     </div>
   );
