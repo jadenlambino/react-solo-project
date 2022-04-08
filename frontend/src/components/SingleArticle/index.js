@@ -8,6 +8,7 @@ import { getSingleArticle } from '../../store/articles';
 import { getComments } from '../../store/comments';
 import { deleteArticles } from '../../store/articles';
 import { editArticles } from '../../store/articles';
+import CommentForm from '../CommentForm';
 
 const SingleArticle = () => {
     const { id } = useParams();
@@ -107,6 +108,7 @@ const SingleArticle = () => {
                             } else return
                         })}
                     </ul>
+                    <CommentForm />
                </div>
             )}
             {sessionUser.id === singleArticle.userId && editOrDelete}
