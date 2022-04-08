@@ -5,10 +5,9 @@ import { useState, useEffect } from "react";
 import './singleArticle.css';
 
 import { getSingleArticle } from '../../store/articles';
-import { getComments } from '../../store/comments';
 import { deleteArticles } from '../../store/articles';
 import { editArticles } from '../../store/articles';
-import CommentForm from '../CommentForm';
+import CommentDisplay from '../CommentsDisplay';
 
 const SingleArticle = () => {
     const { id } = useParams();
@@ -24,10 +23,6 @@ const SingleArticle = () => {
     const [body, setBody] = useState(singleArticle.body);
     const [coverPhoto, setCoverPhoto] = useState(singleArticle.coverPhoto);
     const [errors, setErrors] = useState([])
-
-    useEffect(() => {
-        dispatch(getComments(id))
-    }, [dispatch])
 
     const deleteRedirect = () => {
         dispatch(deleteArticles(singleArticle.id))
@@ -99,19 +94,10 @@ const SingleArticle = () => {
                     <p>
                         {singleArticle?.body}
                     </p>
-                    <ul>
-                        {comments?.map(({articleId, id, body}) => {
-                            if (articleId === singleArticle.id) {
-                                return (
-                                    <li key={id}>{body}</li>
-                                )
-                            } else return
-                        })}
-                    </ul>
-                    <CommentForm />
                </div>
             )}
             {sessionUser.id === singleArticle.userId && editOrDelete}
+            <CommentDisplay />
         </div>
     )
 }

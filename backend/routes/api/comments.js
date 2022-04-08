@@ -10,6 +10,11 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(comments)
 }));
 
+router.get('/:id', asyncHandler(async (req,res) => {
+    const comment = await Comments.findByPk(req.params.id)
+    return res.json(comment)
+}))
+
 router.post('/', asyncHandler(async (req, res) => {
     const { userId, articleId, body } = req.body
 
@@ -24,10 +29,11 @@ router.post('/', asyncHandler(async (req, res) => {
 
 router.delete('/:id', asyncHandler(async (req, res) => {
     const comment = Comments.findByPk(req.params.id);
+    const id = comment.id
     if (!comment) throw new Error('Cannot find Item');
 
-    await Comments.destroy({ where: {id: comment.id}})
-    return res.json({id: article.id})
+    await Comments.destroy({ where: {id: id}})
+    return res.json({id: id})
 }))
 
 // router.patch('/:id', asyncHandler (async (req, res) => {

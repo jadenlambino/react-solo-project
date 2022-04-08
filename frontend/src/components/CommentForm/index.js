@@ -29,7 +29,7 @@ const CommentForm = () => {
 
     return (
         <div className="comments-form-container">
-            <h1>New Comment</h1>
+            <h3>New Comment</h3>
             <form onSubmit={handleSubmit}>
                 <input
                 type='text'

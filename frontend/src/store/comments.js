@@ -52,7 +52,6 @@ export const deleteComment = (commentId) => async dispatch => {
     if (response.ok) {
         const { id: deletedCommentId } = await response.json();
         dispatch(del(deletedCommentId));
-        return deletedCommentId
     }
 }
 
