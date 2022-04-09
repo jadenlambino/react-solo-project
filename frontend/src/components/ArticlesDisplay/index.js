@@ -46,8 +46,10 @@ function ArticlesDisplay() {
 
     return (
         <div className='articles-container'>
-            <h1>New Articles</h1>
-            {loggedIn}
+            <div className='display-container'>
+                <h1>New Articles</h1>
+                {loggedIn}
+            </div>
         </div>
     )
 }
