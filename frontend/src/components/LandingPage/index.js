@@ -8,8 +8,8 @@ export default function LandingPage() {
     return (
         <div className="landing-container">
             <div className="banner">
-                <h1>LARGE</h1>
-                <h2>Awaken your inner detective.</h2>
+                <h1 class='big'>LARGE</h1>
+                <h2 class='small'>Awaken your inner detective.</h2>
                 <NavLink to='/signup' className='start'>Start Searching</NavLink>
             </div>
         </div>
