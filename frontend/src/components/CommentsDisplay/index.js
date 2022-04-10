@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import './commentDisplay.css'
 
 import { getComments } from "../../store/comments";
@@ -12,7 +13,10 @@ const CommentDisplay = () => {
     const sessionUser = useSelector(state => state.session.user);
     const articles = useSelector(state => state.articleState.entries)
     const singleArticle = articles?.find(article => article.id === +id)
+    const commentState = useSelector(state => state.commentState)
     const comments = useSelector(state => state.commentState.entries)
+    const history = useHistory();
+    const [render, setRerender] = useState(false)
 
     const dispatch = useDispatch();
 
@@ -22,6 +26,8 @@ const CommentDisplay = () => {
 
     const deleteIt = (id) => {
         dispatch(deleteComment(id))
+        setRerender(true)
+        // history.push(`/articles/${singleArticle.id}`)
     }
 
     // let editOrDelete;
@@ -35,15 +41,14 @@ const CommentDisplay = () => {
                 {comments?.map((comment) => {
                     if (comment.articleId === singleArticle.id) {
                         return (
-                            <>
-                                <li key={comment.id}>{comment.body}</li>
+                                <li key={comment.id}>{comment.body}
                                 {sessionUser.id === comment.userId && (
                                     <>
-                                      <button className='delete-comment' onClick={() => deleteIt(comment.id)}>Delete</button>
+                                    <button className='delete-comment' onClick={() => deleteIt(comment.id)}>Delete</button>
                                     </>
-                            )}
-                            </>
-                            )
+                                )}
+                                </li>
+                        )
                     } else return
                     })}
             </ul>

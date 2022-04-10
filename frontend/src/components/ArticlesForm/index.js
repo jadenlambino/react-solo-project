@@ -24,9 +24,12 @@ const ArticleForm = () => {
         };
 
         const response = await dispatch(addArticles(newArticle))
+        .catch( async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors)
+        })
         // console.log(response)
-        if (response.id) {
-
+        if (errors.length) {
             history.push(`/articles/${response.id}`)
         }
     };
