@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const db = require('../../db/models');
 
 const { Comments } = require('../../db/models');
+const {validateComments} = require('../../utils/comments')
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
@@ -15,7 +16,7 @@ router.get('/:id', asyncHandler(async (req,res) => {
     return res.json(comment)
 }))
 
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', validateComments, asyncHandler(async (req, res) => {
     const { userId, articleId, body } = req.body
 
     const newComment = await db.Comments.create({
