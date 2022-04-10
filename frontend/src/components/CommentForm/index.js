@@ -21,10 +21,10 @@ const CommentForm = () => {
         }
 
         const response = await dispatch(addComment(newComment))
-        // .catch( async (res) => {
-        //     const data = await res.json();
-        //     if (data && data.errors) setErrors(data.errors)
-        // })
+        .catch( async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors)
+        })
         if (response.id) {
             reset()
         }

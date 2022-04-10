@@ -41,6 +41,9 @@ export const addComment = (payload) => async dispatch => {
         const comment = await response.json()
         dispatch(add(comment))
         return comment
+    } else {
+        const error = await response.json()
+        Promise.reject(error.errors)
     }
 }
 
@@ -69,7 +72,7 @@ const commentsReducer = (state = initialState, action) => {
             // const newState = {...state}
             // delete newState[action.comment]
             // return {newState}
-            return {...state, entries: [state.entries.filter(entry => entry.id !== action.comments)]}
+            return {...state, entries: [...state.entries.filter(entry => entry.id !== action.comments)]}
         default:
             return {state}
     }

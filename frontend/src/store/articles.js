@@ -64,7 +64,7 @@ export const addArticles = (payload) => async dispatch => {
         return article
     } else {
         const error = await response.json()
-        Promise.reject(error.errors).then(console.log('hello'));
+        Promise.reject(error.errors);
     }
 }
 
