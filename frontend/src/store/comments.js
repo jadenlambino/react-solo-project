@@ -66,9 +66,10 @@ const commentsReducer = (state = initialState, action) => {
         case ADD:
             return {...state, entries: [...state.entries, action.comments]}
         case DEL:
-            const newState = {...state}
-            delete newState[action.commentId]
-            return {newState}
+            // const newState = {...state}
+            // delete newState[action.comment]
+            // return {newState}
+            return {...state, entries: [state.entries.filter(entry => entry.id !== action.comments)]}
         default:
             return {state}
     }
