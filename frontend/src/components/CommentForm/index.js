@@ -5,6 +5,7 @@ import { useParams, useHistory } from "react-router-dom";
 
 const CommentForm = () => {
     const [body, setBody] = useState('');
+    const [errors, setErrors] = useState([])
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -20,6 +21,10 @@ const CommentForm = () => {
         }
 
         const response = await dispatch(addComment(newComment))
+        .catch( async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors)
+        })
         if (response.id) {
             reset()
         }
@@ -31,6 +36,11 @@ const CommentForm = () => {
         <div className="comments-form-container">
             <h3>New Comment</h3>
             <form onSubmit={handleSubmit}>
+                <ul>
+                    {errors.map((error, idx) =>
+                        <li key={idx}>{error}</li>
+                    )}
+                </ul>
                 <input
                 type='text'
                 onChange={(e) => setBody(e.target.value)}
