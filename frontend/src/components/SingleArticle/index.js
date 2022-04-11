@@ -24,6 +24,7 @@ const SingleArticle = () => {
     const [body, setBody] = useState(singleArticle.body);
     const [coverPhoto, setCoverPhoto] = useState(singleArticle.coverPhoto);
     const [errors, setErrors] = useState([])
+    const [showForm, setShowForm] = useState(false)
 
     const deleteRedirect = () => {
         dispatch(deleteArticles(singleArticle.id))
@@ -42,13 +43,19 @@ const SingleArticle = () => {
         const response = await dispatch(editArticles(editedBody, id))
         if (response) {
             history.push(`/articles/${singleArticle.id}`);
+            setShowForm(false)
         }
+    }
+
+    const reveal = (e) => {
+        e.preventDefault()
+        showForm ? setShowForm(false) : setShowForm(true)
     }
 
     let editOrDelete;
     editOrDelete = (
-        <>
-            <button onClick={deleteRedirect}>Delete</button>
+        <div className='ed-cont'>
+            <button onClick={deleteRedirect} className='ed-button del'>Delete Article</button>
             <form onSubmit={editMode}>
                 <ul>
                     {errors.map((error, idx) =>
@@ -76,18 +83,20 @@ const SingleArticle = () => {
                         placeholder='Photo Url Goes Here!'
                         name='coverPhoto'
                     />
-                    <button type='submit'>Publish</button>
+                    <button type='submit' className='ed-button'>Publish</button>
             </form>
-        </>
+        </div>
     )
 
 
     return (
         <div className='single-article-container'>
             {singleArticle && (
-               <div className='sing-art-display'>
+                <div className='sing-art-display'>
                    {/* <NavLink to='/articles'>Home</NavLink> */}
-                   <h1 className='sing-title'>{singleArticle.title}</h1>
+                   <div className='sing-top'>
+                    <h1 className='sing-title'>{singleArticle.title}{sessionUser.id === singleArticle.userId && <button onClick={reveal} className='reveal'>Edit</button>}</h1>
+                   </div>
                    <div className='sing-content'>
                         <img
                         src={singleArticle.coverPhoto.length ? singleArticle.coverPhoto : defaultPicture}
@@ -100,7 +109,7 @@ const SingleArticle = () => {
                    </div>
                </div>
             )}
-            {sessionUser.id === singleArticle.userId && editOrDelete}
+            {showForm && editOrDelete}
             <CommentDisplay />
         </div>
     )
