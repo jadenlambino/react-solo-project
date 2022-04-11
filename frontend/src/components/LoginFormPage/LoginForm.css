@@ -1,3 +1,52 @@
 .login-container {
-    margin-top: 4em;
+    margin-top: 3.5em;
+    background-color: rgba(63, 63, 54, 1);
+    height: 100vh;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.log-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20vh;
+}
+
+.log-button {
+    font-family: crimer;
+    border: none;
+    background-color: rgba(63, 63, 54, 1);
+    font-size: 32px;
+    font-family: crimer;
+    -webkit-text-stroke: 1px white;
+}
+
+.log-error {
+    color: rgba(255, 0, 0, 0.556);
+    list-style: none;
+    font-size: 32px;
+    font-family: crimer;
+    -webkit-text-stroke: .5px white;
+    text-align: center;
+}
+
+.log-label {
+    color: black;
+    list-style: none;
+    font-size: 24px;
+    font-family: crimer;
+    -webkit-text-stroke: .5px white;
+    margin-left: 10px;
+}
+
+input {
+    margin: 10px;
+    border: 0;
+    background-color: none;
+    padding: 5px;
+    box-shadow: 0 0 10px 3px black;
+    border-radius: 10px;
 }
