@@ -1,0 +1,17 @@
+.comments-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comm-form-label{
+    font-family: crimer;
+    font-size: 24px;
+    font-weight: bold;
+    -webkit-text-stroke: 1px white;
+}
+
+input::placeholder {
+    color: lightgrey;
+    -webkit-text-stroke: 0;
+}

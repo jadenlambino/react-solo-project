@@ -26,7 +26,7 @@ function App() {
     );
   } else {
     homePages = (
-      <HomePage />
+      <Articles />
     )
   }
 

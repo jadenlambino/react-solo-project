@@ -36,14 +36,15 @@ const ArticleForm = () => {
 
     return (
         <div className="articles-form-container">
-            <h1>Create Article</h1>
-            <form onSubmit={handleSubmit}>
+            <h1 className="art-title">Create Article</h1>
+            <form className='art-form' onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error, idx) =>
-                        <li key={idx}>{error}</li>
+                        <li key={idx} className='art-error'>{error}</li>
                     )}
                 </ul>
                 <input
+                    className="art-in"
                     type='text'
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
@@ -57,13 +58,14 @@ const ArticleForm = () => {
                     name='Body'
                 />
                 <input
+                    className="art-in"
                     type='text'
                     onChange={(e) => setCoverPhoto(e.target.value)}
                     value={coverPhoto}
                     placeholder='Photo Url Goes Here!'
                     name='coverPhoto'
                 />
-                <button type='submit'>Publish</button>
+                <button type='submit' className="art-button">Publish</button>
             </form>
         </div>
     )

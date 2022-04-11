@@ -37,11 +37,13 @@ const CommentDisplay = () => {
 
     return (
         <div className="comment-display">
-            <ul>
+            <h1 className="comm-title">Comments</h1>
+                <CommentForm />
+            <ul className="comm-list">
                 {comments?.map((comment) => {
                 if (comment.articleId === singleArticle.id) {
                         return (
-                                <li key={comment.id}>{comment.body}
+                                <li key={comment.id} className='comm-list-item'>{comment.body}
                                 {sessionUser.id === comment.userId && (
                                     <>
                                     <button className='delete-comment' onClick={() => deleteIt(comment.id)}>Delete</button>
@@ -52,7 +54,6 @@ const CommentDisplay = () => {
                     } else return
                     })}
             </ul>
-            <CommentForm />
         </div>
     )
 }

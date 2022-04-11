@@ -50,3 +50,16 @@ input {
     box-shadow: 0 0 10px 3px black;
     border-radius: 10px;
 }
+
+.go-log {
+    font-family: crimer;
+    -webkit-text-stroke: .5px white;
+    font-size: large;
+}
+
+.logger {
+    font-family: crimer;
+    color: black;
+    -webkit-text-stroke: .5px white;
+    text-decoration: none;
+}

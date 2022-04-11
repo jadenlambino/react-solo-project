@@ -26,7 +26,6 @@ function Navigation({ isLoaded }){
       <ul className='navbar'>
       <NavLink to='/' className='logo'>LARGE</NavLink>
         <li className='nav-element'>
-          <NavLink exact to="/">Home</NavLink>
           <NavLink to='/articles'>Articles</NavLink>
           {isLoaded && sessionLinks}
         </li>

@@ -28,13 +28,21 @@ function ArticlesDisplay() {
     let loggedIn
     if (!sessionUser) {
         loggedIn = (
-            <ul>
-                {articles?.map(({ id , title}) => (
-                    <li key={id}>
-                        <NavLink to={`/signup`}>{title}</NavLink>
-                    </li>
-                ))}
-            </ul>
+            <>
+                <ul className='art-list'>
+                    {articles?.map(({ id , title, coverPhoto, body}) => (
+                        <li className='art-list-items' key={id}>
+                            <div className='single-container'>
+                                <img className='articleImage' src={!coverPhoto.length ? defaultPicture: `${coverPhoto}`}></img>
+                                <div className='art-content'>
+                                    <NavLink className='art-link' to={'/login'}>{title}</NavLink>
+                                    <p className='art-preview'>{stringCutter(body)}</p>
+                                </div>
+                            </div>
+                        </li>
+                    ))}
+                 </ul>
+            </>
         )
     } else {
         loggedIn = (

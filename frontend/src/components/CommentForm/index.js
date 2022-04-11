@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../../store/comments";
 import { useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import './CommentForm.css'
 
 const CommentForm = () => {
     const [body, setBody] = useState('');
@@ -34,21 +35,24 @@ const CommentForm = () => {
 
     return (
         <div className="comments-form-container">
-            <h3>New Comment</h3>
+            {/* <h3 className="comm-form-title">New Comment</h3> */}
             <form onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error, idx) =>
                         <li key={idx}>{error}</li>
                     )}
                 </ul>
-                <input
-                type='text'
-                onChange={(e) => setBody(e.target.value)}
-                value={body}
-                placeholder="Comment Here!"
-                name='title'
-                />
-                <button type='submit'>Submit</button>
+                <label className="comm-form-label">
+                    New Comment
+                    <input
+                    type='text'
+                    onChange={(e) => setBody(e.target.value)}
+                    value={body}
+                    placeholder="Comment Here!"
+                    name='title'
+                    />
+                </label>
+                <button type='submit' className="comm-button">Submit</button>
             </form>
         </div>
     )

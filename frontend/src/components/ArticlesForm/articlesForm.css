@@ -1,3 +1,58 @@
 .articles-form-container {
-    margin-top: 4em;
+    margin-top: 3.5em;
+    height: 95vh;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(63, 63, 54, 1)
+}
+
+textarea {
+    margin: 10px;
+    border: 0;
+    background-color: none;
+    padding: 5px;
+    box-shadow: 0 0 10px 3px black;
+    border-radius: 10px;
+    min-width: 300px;
+    min-height: 300px;
+}
+
+.art-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.art-in {
+    min-width: 300px;
+}
+
+.art-button {
+    font-family: crimer;
+    border: none;
+    background-color: rgba(63, 63, 54, 1);
+    font-size: 20px;
+    font-family: crimer;
+    -webkit-text-stroke: 1px white;
+}
+
+.art-title {
+    font-family: crimer;
+    font-size: 60px;
+    font-weight: bold;
+    -webkit-text-stroke: 1px white;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.art-error {
+    color: rgba(255, 0, 0, 0.556);
+    list-style: none;
+    font-size: 24px;
+    font-family: crimer;
+    -webkit-text-stroke: .5px white;
+    text-align: center;
 }

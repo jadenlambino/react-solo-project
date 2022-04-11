@@ -1,0 +1,27 @@
+.comm-title {
+    font-family: crimer;
+    font-size: 30px;
+    font-weight: bold;
+    -webkit-text-stroke: 1px white;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.comm-list {
+    list-style: circle;
+}
+
+.comm-list-item {
+    font-family: crimer;
+    -webkit-text-stroke: 1px white;
+    font-size: 24px;
+}
+
+.delete-comment {
+    font-family: crimer;
+    border: none;
+    background-color: rgba(63, 63, 54, 1);
+    font-size: 20px;
+    font-family: crimer;
+    -webkit-text-stroke: 1px white;
+}
