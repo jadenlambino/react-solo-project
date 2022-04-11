@@ -2,6 +2,9 @@
     margin-top: 3.5em;
     background-color: rgba(63, 63, 54, 1);
     height: 100vh;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
 }
 
 .signin-form {
@@ -9,6 +12,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin-top: 20vh;
 }
 
 .signbutton {
@@ -16,4 +20,28 @@
     border: none;
     background-color: rgba(63, 63, 54, 1);
     font-size: 20px;
+    font-family: crimer;
+    -webkit-text-stroke: 1px white;
+}
+
+.sign-error {
+    color: rgba(255, 0, 0, 0.556);
+    list-style: none;
+    font-size: 24px;
+    font-family: crimer;
+    -webkit-text-stroke: .5px white;
+    text-align: center;
+}
+
+.sign-label {
+    color: black;
+    list-style: none;
+    font-size: 24px;
+    font-family: crimer;
+    -webkit-text-stroke: .5px white;
+    margin-left: 10px;
+}
+
+input {
+    margin: 10px;
 }
