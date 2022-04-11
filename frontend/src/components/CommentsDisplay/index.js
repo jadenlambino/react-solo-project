@@ -39,7 +39,7 @@ const CommentDisplay = () => {
         <div className="comment-display">
             <ul>
                 {comments?.map((comment) => {
-                    if (comment.articleId === singleArticle.id) {
+                if (comment.articleId === singleArticle.id) {
                         return (
                                 <li key={comment.id}>{comment.body}
                                 {sessionUser.id === comment.userId && (
