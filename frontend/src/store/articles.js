@@ -114,7 +114,7 @@ export default function articlesReducer(state = initialState, action) {
             state.entries.pop()
             return {
                 ...state,
-                entries: [ ...state.entries, action.articles]
+                entries: [ state.entries, action.articles]
             }
         default:
             return state;

@@ -33,7 +33,7 @@
     box-sizing: border-box;
     border: 2px solid black;
     margin: 5px;
-    box-shadow: 3px 3px 10px hotpink;
+    box-shadow: 3px 3px 10px black;
 }
 
 .single-container {
