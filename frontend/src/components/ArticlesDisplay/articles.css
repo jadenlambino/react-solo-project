@@ -79,3 +79,7 @@
     max-width: fit-content;
     margin-left: 45%;
 }
+
+.sing-body {
+    min-width: 50vw;
+}

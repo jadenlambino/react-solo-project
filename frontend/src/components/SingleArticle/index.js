@@ -8,6 +8,7 @@ import { getSingleArticle } from '../../store/articles';
 import { deleteArticles } from '../../store/articles';
 import { editArticles } from '../../store/articles';
 import CommentDisplay from '../CommentsDisplay';
+import defaultPicture from '../../utils/picture/crime.jpeg'
 
 const SingleArticle = () => {
     const { id } = useParams();
@@ -84,16 +85,19 @@ const SingleArticle = () => {
     return (
         <div className='single-article-container'>
             {singleArticle && (
-               <div>
-                   <NavLink to='/articles'>Home</NavLink>
-                   <h1>{singleArticle.title}</h1>
-                   <img
-                    src={singleArticle.coverPhoto}
-                    alt={singleArticle.title}
-                    />
-                    <p>
-                        {singleArticle?.body}
-                    </p>
+               <div className='sing-art-display'>
+                   {/* <NavLink to='/articles'>Home</NavLink> */}
+                   <h1 className='sing-title'>{singleArticle.title}</h1>
+                   <div className='sing-content'>
+                        <img
+                        src={singleArticle.coverPhoto.length ? singleArticle.coverPhoto : defaultPicture}
+                        alt={singleArticle.title}
+                        className='sing-pic'
+                        />
+                        <p className='sing-body'>
+                            {singleArticle?.body}
+                        </p>
+                   </div>
                </div>
             )}
             {sessionUser.id === singleArticle.userId && editOrDelete}
