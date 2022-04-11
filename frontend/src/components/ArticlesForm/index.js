@@ -29,7 +29,7 @@ const ArticleForm = () => {
             if (data && data.errors) setErrors(data.errors)
         })
         // console.log(response)
-        if (errors.length) {
+        if (!errors.length) {
             history.push(`/articles/${response.id}`)
         }
     };
@@ -50,8 +50,7 @@ const ArticleForm = () => {
                     placeholder='Title'
                     name='title'
                 />
-                <input
-                    type='textarea'
+                <textarea
                     onChange={(e) => setBody(e.target.value)}
                     value={body}
                     placeholder='Body'
