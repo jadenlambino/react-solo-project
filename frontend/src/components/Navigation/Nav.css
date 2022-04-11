@@ -35,10 +35,13 @@ body {
 
 .navbar li {
     float: right;
+    display: inline;
     margin: 8px auto;
 }
 
-.nav-element a {
+.nav-element a,
+.nav-element p,
+.nav-element button {
     margin: 6px 10px;
     text-decoration: none;
     font-size: 24px;
@@ -66,4 +69,34 @@ body {
     border: none;
     background-color: rgba(255, 255, 255, 0);
     background-image: url('../../../public/utils/white-24dp/1x/round_account_circle_white_24dp.png');
+}
+
+.welcome-msg {
+    font-family: crimer;
+    margin: 6px 10px;
+    text-decoration: none;
+    font-size: 24px;
+    color: black;
+    -webkit-text-stroke: 1px white;
+}
+
+.welcome-btn {
+    font-family: crimer;
+    border: none;
+    background-color: rgba(63, 63, 54, 1);
+    font-size: 20px;
+    font-family: crimer;
+    -webkit-text-stroke: 1px white;
+}
+
+.list-holder {
+    display: table;
+    margin: 0 auto;
+}
+
+.profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

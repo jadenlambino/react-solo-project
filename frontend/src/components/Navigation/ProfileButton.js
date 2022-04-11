@@ -27,8 +27,8 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-    history.push('/')
     dispatch(sessionActions.logout());
+    history.push('/')
   };
 
   return (
@@ -37,10 +37,9 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
+          <li className="welcome-msg">Welcome {`${user.username}`}!</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button onClick={logout} className='welcome-btn'>Log Out</button>
           </li>
         </ul>
       )}
